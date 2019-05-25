@@ -8,7 +8,7 @@ $char-text-color: rgb(39, 0, 148);
   align-items:flex-end;
 }
 
-.char {
+.char.container {
   font-size:3em;
   padding:30px 20px;
   margin: 10px 10px;
@@ -23,8 +23,8 @@ $char-text-color: rgb(39, 0, 148);
   font-family: monospace;
 }
 
-.char:hover {
+.char.container:hover {
   background-color: lighten($char-border-color, 30);
   color: lighten(invert($char-text-color),20);
-  transform:translateY(-20px);
+  transform:translateY(-10px);
 }

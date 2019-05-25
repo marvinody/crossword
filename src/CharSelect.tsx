@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { Char } from './Char';
 import './CharSelect.scss';
-import { loadWord } from './store/actions';
+import { deselectWord, loadWord, selectWord } from './store/actions';
 import { State as StoreState } from './store/reducers';
 
 type Props = ReturnType<typeof mapStateToProps> &
@@ -24,8 +24,15 @@ export class DisconnectedCharSelect extends React.Component<Props, State> {
     const max = this.props.letters.length;
     return (
       <div className='charSelect'>
-        {this.props.letters.map(char => {
-          return (<Char char={char} max={max} ></Char>)
+        {this.props.letters.map((char, idx) => {
+          return (<Char
+            key={idx}
+            idx={idx}
+            char={char}
+            max={max}
+            select={this.props.select}
+            deselect={this.props.deselect}
+          ></Char>)
         })}
       </div>
     )
@@ -40,6 +47,8 @@ const mapStateToProps = (state: StoreState) => ({
 })
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   load: (word: string) => dispatch(loadWord(word)),
+  select: (idx: number) => dispatch(selectWord(idx)),
+  deselect: (idx: number) => dispatch(deselectWord(idx)),
 });
 
 export const CharSelect = connect(
