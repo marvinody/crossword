@@ -1,5 +1,5 @@
 import React from 'react';
-import { CharInfo } from './CharSelect';
+import { CharInfo } from './store/reducers';
 type Props = {
   char: CharInfo
   max: number

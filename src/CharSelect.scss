@@ -1,6 +1,30 @@
+$char-border-color: rgb(236, 32, 255);
+$char-text-color: rgb(39, 0, 148);
+
 .charSelect {
   display:flex;
   flex-direction:row;
   justify-content: center;
   align-items:flex-end;
+}
+
+.char {
+  font-size:3em;
+  padding:30px 20px;
+  margin: 10px 10px;
+  border:1px solid $char-border-color;
+  color: $char-text-color;
+  transition:
+    background-color ease-in-out 0.5s,
+    color ease-in-out 0.3s,
+    transform ease-in-out 0.3s,
+  ;
+  cursor: pointer;
+  font-family: monospace;
+}
+
+.char:hover {
+  background-color: lighten($char-border-color, 30);
+  color: lighten(invert($char-text-color),20);
+  transform:translateY(-20px);
 }

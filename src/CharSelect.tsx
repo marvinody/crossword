@@ -1,36 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import { Char } from './Char';
 import './CharSelect.scss';
-export type CharInfo = {
-  char: string,
-  order: number,
-  isSelected: boolean,
-}
+import { loadWord } from './store/actions';
+import { State as StoreState } from './store/reducers';
 
-type Props = {
-  letters: Array<CharInfo>
-};
+type Props = ReturnType<typeof mapStateToProps> &
+  ReturnType<typeof mapDispatchToProps> & {
+
+  };
+
+
 type State = {
-  isMouseDown: boolean;
+
 }
 
-export class CharSelect extends React.Component<Props, State> {
+export class DisconnectedCharSelect extends React.Component<Props, State> {
   readonly state: State = {
-    isMouseDown: false,
-  }
 
-  handleMouseDown = () => {
-    this.setState({
-      isMouseDown: true,
-    })
   }
-
-  handleMouseUp = () => {
-    this.setState({
-      isMouseDown: false,
-    })
-  }
-
   render() {
     const max = this.props.letters.length;
     return (
@@ -41,5 +30,19 @@ export class CharSelect extends React.Component<Props, State> {
       </div>
     )
   }
-
+  componentDidMount() {
+    this.props.load('cats');
+  }
 }
+
+const mapStateToProps = (state: StoreState) => ({
+  letters: state.wordSelect.letters,
+})
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  load: (word: string) => dispatch(loadWord(word)),
+});
+
+export const CharSelect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(DisconnectedCharSelect);
