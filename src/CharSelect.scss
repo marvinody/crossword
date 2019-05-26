@@ -2,16 +2,12 @@ $char-border-color: rgb(236, 32, 255);
 $char-text-color: rgb(39, 0, 148);
 
 .charSelect {
-  display:flex;
-  flex-direction:row;
-  justify-content: center;
-  align-items:flex-end;
+  list-style-type: none;
 }
 
 .char.container {
+  position:absolute;
   font-size:3em;
-  padding:30px 20px;
-  margin: 10px 10px;
   border:1px solid $char-border-color;
   color: $char-text-color;
   transition:
@@ -19,12 +15,11 @@ $char-text-color: rgb(39, 0, 148);
     color ease-in-out 0.3s,
     transform ease-in-out 0.3s,
   ;
+  left: 50%;
+  bottom: 100px;
   cursor: pointer;
   font-family: monospace;
+  user-select: none;
 }
 
-.char.container:hover {
-  background-color: lighten($char-border-color, 30);
-  color: lighten(invert($char-text-color),20);
-  transform:translateY(-10px);
-}
+

@@ -23,7 +23,7 @@ export class DisconnectedCharSelect extends React.Component<Props, State> {
   render() {
     const max = this.props.letters.length;
     return (
-      <div className='charSelect'>
+      <ul className='charSelect'>
         {this.props.letters.map((char, idx) => {
           return (<Char
             key={idx}
@@ -34,11 +34,11 @@ export class DisconnectedCharSelect extends React.Component<Props, State> {
             deselect={this.props.deselect}
           ></Char>)
         })}
-      </div>
+      </ul>
     )
   }
   componentDidMount() {
-    this.props.load('cats');
+    this.props.load('catse');
   }
 }
 

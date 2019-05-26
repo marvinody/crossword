@@ -19,17 +19,22 @@ const toggleState = (char: CharInfo, idx: number, select: toggleCharFn, deselect
 
 export const Char: React.FC<Props> = props => {
   const onClick = () => toggleState(props.char, props.idx, props.select, props.deselect)
+  const inc = (360 / props.max) | 0 // chars into the circle
+  const deg = props.idx * inc + 'deg'
   const style = {
-    transform: `translateY(${-15 - (5 * props.char.order)}px)`
+    transform: `rotate(${deg}) translate(100px)`
+  }
+  const singleCharStyle = {
+    transform: `rotate(-${deg})`
   }
   return (
-    <div className='char container'
+    <li className='char container'
       onClick={onClick}
-      style={props.char.isSelected ? style : {}}
+      style={style}
     >
-      <div className='single char'>
+      <div className='single char' style={singleCharStyle}>
         {props.char.char}
       </div>
-    </div>
+    </li>
   )
 }
