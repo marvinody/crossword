@@ -20,15 +20,24 @@ export type State = {
   },
 }
 
-
 function wordSelect(state = initialState.wordSelect, action: Action): State['wordSelect'] {
   switch (action.type) {
+    case ActionType.SUBMIT_WORD:
+      return {
+        ...state,
+        selectedIdx: 0,
+        letters: state.letters.map(c => ({
+          ...c,
+          order: -1,
+          isSelected: false,
+        }))
+      }
     case ActionType.LOAD_WORD:
       return {
         ...state,
         letters: action.word.split('').map(c => newChar(c))
       }
-    case ActionType.SELECT_WORD:
+    case ActionType.SELECT_CHAR:
       return {
         ...state,
         letters: state.letters.map((c, idx) => {
@@ -43,7 +52,7 @@ function wordSelect(state = initialState.wordSelect, action: Action): State['wor
         }),
         selectedIdx: state.selectedIdx + 1,
       }
-    case ActionType.DESELECT_WORD:
+    case ActionType.DESELECT_CHAR:
       const chosenLetter = state.letters[action.idx]
       // prevent out of order deselecting
       if (chosenLetter.order !== state.selectedIdx - 1) {

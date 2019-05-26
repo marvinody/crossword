@@ -1,24 +1,16 @@
 import React from 'react';
 import { CharInfo } from './store/reducers';
-type toggleCharFn = (idx: number) => void;
+type toggleCharFn = (char: CharInfo, idx: number) => void;
 type Props = {
   char: CharInfo
   idx: number,
   max: number
-  select: toggleCharFn,
-  deselect: toggleCharFn,
-}
-
-const toggleState = (char: CharInfo, idx: number, select: toggleCharFn, deselect: toggleCharFn) => {
-  if (char.isSelected) {
-    deselect(idx);
-  } else {
-    select(idx);
-  }
+  toggleState: toggleCharFn,
+  mouseDown: toggleCharFn,
 }
 
 export const Char: React.FC<Props> = props => {
-  const onClick = () => toggleState(props.char, props.idx, props.select, props.deselect)
+  const toggle = () => props.toggleState(props.char, props.idx)
   const inc = (360 / props.max) | 0 // chars into the circle
   const deg = props.idx * inc + 'deg'
   const style = {
@@ -30,7 +22,8 @@ export const Char: React.FC<Props> = props => {
   const className = 'char container ' + (props.char.isSelected ? 'selected' : '');
   return (
     <li className={className}
-      onClick={onClick}
+      onMouseEnter={toggle}
+      onMouseDown={() => props.mouseDown(props.char, props.idx)}
       style={style}
     >
       <div className='single char' style={singleCharStyle}>

@@ -1,19 +1,22 @@
 export enum ActionType {
-  SELECT_WORD = 1,
-  DESELECT_WORD,
+  SELECT_CHAR = 1,
+  DESELECT_CHAR,
   LOAD_WORD,
+  SUBMIT_WORD,
 }
 
 
 export type Action = {
-  type: ActionType.SELECT_WORD,
+  type: ActionType.SELECT_CHAR,
   idx: number,
 } | {
-  type: ActionType.DESELECT_WORD,
+  type: ActionType.DESELECT_CHAR,
   idx: number,
 } | {
   type: ActionType.LOAD_WORD,
   word: string,
+} | {
+  type: ActionType.SUBMIT_WORD,
 }
 
 export const loadWord = (word: string): Action => ({
@@ -21,14 +24,18 @@ export const loadWord = (word: string): Action => ({
   word,
 })
 
-export const selectWord = (idx: number): Action => ({
-  type: ActionType.SELECT_WORD,
+export const selectChar = (idx: number): Action => ({
+  type: ActionType.SELECT_CHAR,
   idx,
 })
 
-export const deselectWord = (idx: number): Action => ({
-  type: ActionType.DESELECT_WORD,
+export const deselectChar = (idx: number): Action => ({
+  type: ActionType.DESELECT_CHAR,
   idx,
+})
+
+export const submitWord = (): Action => ({
+  type: ActionType.SUBMIT_WORD,
 })
 
 
