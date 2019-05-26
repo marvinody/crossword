@@ -45,6 +45,10 @@ function wordSelect(state = initialState.wordSelect, action: Action): State['wor
       }
     case ActionType.DESELECT_WORD:
       const chosenLetter = state.letters[action.idx]
+      // prevent out of order deselecting
+      if (chosenLetter.order !== state.selectedIdx - 1) {
+        return state;
+      }
       return {
         ...state,
         letters: state.letters.map((c, idx) => {

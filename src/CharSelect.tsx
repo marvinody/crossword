@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { Char } from './Char';
+import { CharConnector } from './CharConnector';
 import './CharSelect.scss';
 import { deselectWord, loadWord, selectWord } from './store/actions';
 import { State as StoreState } from './store/reducers';
@@ -23,22 +24,25 @@ export class DisconnectedCharSelect extends React.Component<Props, State> {
   render() {
     const max = this.props.letters.length;
     return (
-      <ul className='charSelect'>
-        {this.props.letters.map((char, idx) => {
-          return (<Char
-            key={idx}
-            idx={idx}
-            char={char}
-            max={max}
-            select={this.props.select}
-            deselect={this.props.deselect}
-          ></Char>)
-        })}
-      </ul>
+      <div>
+        <CharConnector letters={this.props.letters}></CharConnector>
+        <ul className='charSelect'>
+          {this.props.letters.map((char, idx) => {
+            return (<Char
+              key={idx}
+              idx={idx}
+              char={char}
+              max={max}
+              select={this.props.select}
+              deselect={this.props.deselect}
+            ></Char>)
+          })}
+        </ul>
+      </div>
     )
   }
   componentDidMount() {
-    this.props.load('catse');
+    this.props.load('walked');
   }
 }
 

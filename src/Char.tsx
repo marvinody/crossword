@@ -27,8 +27,9 @@ export const Char: React.FC<Props> = props => {
   const singleCharStyle = {
     transform: `rotate(-${deg})`
   }
+  const className = 'char container ' + (props.char.isSelected ? 'selected' : '');
   return (
-    <li className='char container'
+    <li className={className}
       onClick={onClick}
       style={style}
     >
