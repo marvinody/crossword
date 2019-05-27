@@ -1,5 +1,5 @@
 import React from 'react';
-import { CharInfo } from './store/reducers';
+import { CharInfo, Coord } from './store/reducers';
 
 type Props = {
   letters: Array<CharInfo>
@@ -18,13 +18,12 @@ export const CharConnector: React.FC<Props> = props => {
 }
 
 
-type Coord = [number, number]
 
 const getAngleFromIdx = (idx: number, len: number): number => ((360 / len) | 0) * idx
 const getCoordsFromAngle = (angle: number): Coord => {
   const xInc = ADJUSTED_RADIUS * Math.cos(angle * Math.PI / 180),
     yInc = ADJUSTED_RADIUS * Math.sin(angle * Math.PI / 180);
-  return [CENTER.x + xInc, CENTER.y + yInc];
+  return { x: CENTER.x + xInc, y: CENTER.y + yInc };
 }
 
 const makeLines = (letters: Array<CharInfo>) => {
@@ -47,10 +46,10 @@ const makeLines = (letters: Array<CharInfo>) => {
   }
   return paired.map((coords, idx) => <line
     key={idx}
-    x1={coords[0][0]}
-    y1={coords[0][1]}
-    x2={coords[1][0]}
-    y2={coords[1][1]}
+    x1={coords[0].x}
+    y1={coords[0].y}
+    x2={coords[1].x}
+    y2={coords[1].y}
     stroke='black'
   ></line>)
 }

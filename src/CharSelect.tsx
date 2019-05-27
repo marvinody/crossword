@@ -4,8 +4,8 @@ import { Dispatch } from 'redux';
 import { Char } from './Char';
 import { CharConnector } from './CharConnector';
 import './CharSelect.scss';
-import { deselectChar, loadWord, selectChar, submitWord } from './store/actions';
-import { CharInfo, State as StoreState } from './store/reducers';
+import { deselectChar, loadLevel, selectChar, submitWord } from './store/actions';
+import { CharInfo, State as StoreState, Word } from './store/reducers';
 
 type Props = ReturnType<typeof mapStateToProps> &
   ReturnType<typeof mapDispatchToProps> & {
@@ -31,7 +31,6 @@ export class DisconnectedCharSelect extends React.Component<Props, State> {
   mouseUp = () => {
     this.setState({ isMouseDown: false, })
     this.props.submit();
-    console.count('mouseUp')
   }
   // lets us change the char only if the mouse is down already
   toggleChar = (char: CharInfo, idx: number) => {
@@ -66,7 +65,10 @@ export class DisconnectedCharSelect extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    this.props.load('walked');
+    this.props.load(
+      'walked'.split(''),
+      [],
+    );
   }
 }
 
@@ -74,7 +76,7 @@ const mapStateToProps = (state: StoreState) => ({
   letters: state.wordSelect.letters,
 })
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  load: (word: string) => dispatch(loadWord(word)),
+  load: (letters: Array<string>, words: Array<Word>) => dispatch(loadLevel(letters, words)),
   select: (idx: number) => dispatch(selectChar(idx)),
   deselect: (idx: number) => dispatch(deselectChar(idx)),
   submit: () => dispatch(submitWord()),

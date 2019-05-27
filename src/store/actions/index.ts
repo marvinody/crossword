@@ -1,7 +1,9 @@
+import { Word } from "../reducers";
+
 export enum ActionType {
   SELECT_CHAR = 1,
   DESELECT_CHAR,
-  LOAD_WORD,
+  LOAD_LEVEL,
   SUBMIT_WORD,
 }
 
@@ -13,15 +15,17 @@ export type Action = {
   type: ActionType.DESELECT_CHAR,
   idx: number,
 } | {
-  type: ActionType.LOAD_WORD,
-  word: string,
+  type: ActionType.LOAD_LEVEL,
+  words: Array<Word>,
+  letters: Array<string>
 } | {
   type: ActionType.SUBMIT_WORD,
 }
 
-export const loadWord = (word: string): Action => ({
-  type: ActionType.LOAD_WORD,
-  word,
+export const loadLevel = (letters: Array<string>, words: Array<Word>): Action => ({
+  type: ActionType.LOAD_LEVEL,
+  words,
+  letters,
 })
 
 export const selectChar = (idx: number): Action => ({
