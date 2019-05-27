@@ -27,7 +27,7 @@ export type State = {
     words: Array<Word>
   }
 }
-
+export const ZP = { x: 0, y: 0 }
 export enum WordCharState {
   HIDDEN = 0,
   VISIBLE = 1,
@@ -42,7 +42,18 @@ export type WordChar = {
 export type Word = {
   full: string,
   split: Array<WordChar>,
+  completed: boolean,
 }
+export const newWord = (word: string, start: Coord, isHoriz: boolean): Word => ({
+  completed: false,
+  full: word,
+  split: word.split('').map((c: string, idx: number): WordChar => ({
+    char: c,
+    state: WordCharState.HIDDEN,
+    x: start.x + (isHoriz ? idx : 0),
+    y: start.y + (!isHoriz ? idx : 0),
+  })),
+})
 
 function wordSelect(state = initialState.wordSelect, action: Action): State['wordSelect'] {
   switch (action.type) {
@@ -112,17 +123,20 @@ function board(state = initialState.board, action: Action): State['board'] {
   switch (action.type) {
     case ActionType.LOAD_LEVEL:
       {
-        const bounds = action.letters.flat().reduce((acc, cur) => {
-          if (cur.x < acc.min.x) acc.min.x = cur.x;
-          if (cur.x > acc.max.x) acc.max.x = cur.x;
-          if (cur.y < acc.min.y) acc.min.y = cur.y;
-          if (cur.y > acc.max.y) acc.max.y = cur.y;
-          return acc;
-        }, { min: { x: Infinity, y: Infinity }, max: { x: 0, y: 0 } })
+        const bounds = action.words
+          .map(w => w.split)
+          .flat()
+          .reduce((acc, cur) => {
+            if (cur.x < acc.min.x) acc.min.x = cur.x;
+            if (cur.x > acc.max.x) acc.max.x = cur.x;
+            if (cur.y < acc.min.y) acc.min.y = cur.y;
+            if (cur.y > acc.max.y) acc.max.y = cur.y;
+            return acc;
+          }, { min: { x: Infinity, y: Infinity }, max: { x: 0, y: 0 } })
         return {
           ...state,
-          height: bounds.max.y - bounds.min.y,
-          width: bounds.max.x - bounds.min.x,
+          height: bounds.max.y - bounds.min.y + 1, // last idx -> len := +1
+          width: bounds.max.x - bounds.min.x + 1,
           offset: bounds.min, // this should generally be 0 if wellformed
           words: action.words,
         }

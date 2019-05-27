@@ -1,0 +1,14 @@
+.grid{
+  display:flex;
+  flex-direction:column;
+}
+.row {
+  display:flex;
+}
+.cell {
+  width:32px;
+  height:32px;
+}
+.hidden, .visible {
+  background-color:#ddd;
+ }

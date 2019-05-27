@@ -5,7 +5,7 @@ import { Char } from './Char';
 import { CharConnector } from './CharConnector';
 import './CharSelect.scss';
 import { deselectChar, loadLevel, selectChar, submitWord } from './store/actions';
-import { CharInfo, State as StoreState, Word } from './store/reducers';
+import { CharInfo, newWord, State as StoreState, Word, ZP } from './store/reducers';
 
 type Props = ReturnType<typeof mapStateToProps> &
   ReturnType<typeof mapDispatchToProps> & {
@@ -46,7 +46,7 @@ export class DisconnectedCharSelect extends React.Component<Props, State> {
   render() {
     const max = this.props.letters.length;
     return (
-      <div onMouseUp={this.mouseUp}>
+      <div className='selector container' onMouseUp={this.mouseUp}>
         <CharConnector letters={this.props.letters}></CharConnector>
         <ul className='charSelect'>
           {this.props.letters.map((char, idx) => {
@@ -67,7 +67,10 @@ export class DisconnectedCharSelect extends React.Component<Props, State> {
   componentDidMount() {
     this.props.load(
       'walked'.split(''),
-      [],
+      [
+        newWord('walked', ZP, true),
+        newWord('wake', ZP, false)
+      ],
     );
   }
 }

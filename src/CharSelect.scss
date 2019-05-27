@@ -1,6 +1,10 @@
 $char-border-color: rgb(236, 32, 255);
 $char-text-color: rgb(39, 0, 148);
 
+.selector.container {
+  width: 0px; // this is needed to allow board to align itself horizontally nicely
+}
+
 .charSelect {
   list-style-type: none;
 }
