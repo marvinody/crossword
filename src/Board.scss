@@ -1,14 +1,45 @@
-.grid{
-  display:flex;
-  flex-direction:column;
+.grid {
+  display: flex;
+  flex-direction: column;
 }
+
 .row {
-  display:flex;
+  display: flex;
 }
+
 .cell {
-  width:32px;
-  height:32px;
+  width: 32px;
+  height: 32px;
 }
-.hidden, .visible {
-  background-color:#ddd;
- }
+
+.hidden,
+.visible {
+  background-color: #ddd;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+
+  &:first-child {
+    border-left: 1px solid black;
+  }
+}
+
+.empty+.hidden,
+.empty+.visible {
+  border-left: 1px solid black;
+}
+
+.row:first-child {
+
+  & .hidden,
+  &.visible {
+    border-top: 1px solid black;
+  }
+}
+
+.row:last-child {
+
+  & .hidden,
+  & .visible {
+    border-bottom: 1px solid black;
+  }
+}

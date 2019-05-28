@@ -24,9 +24,10 @@ $char-text-color: rgb(39, 0, 148);
   cursor: pointer;
   font-family: monospace;
   user-select: none;
-}
-.char.container.selected {
-  background-color:blue;
+
+  &.selected {
+    background-color:blue;
+  }
 }
 .char.connections {
   background-color:chartreuse;
