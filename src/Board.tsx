@@ -2,7 +2,6 @@ import React, { ReactElement } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import './Board.scss';
-import { deselectChar, selectChar, submitWord } from './store/actions';
 import { State as StoreState, WordCharState } from './store/reducers';
 
 type Props = ReturnType<typeof mapStateToProps> &
@@ -32,6 +31,9 @@ export class DisconnectedBoard extends React.Component<Props, State> {
           case WordCharState.VISIBLE:
             className += 'visible'; break;
         }
+        if (grid[col][row].props.className.includes('visible')) {
+          return;
+        }
         grid[col][row] = <div className={className}>{isHidden ? ' ' : c.char}</div>
       })
     })
@@ -58,9 +60,7 @@ const mapStateToProps = (state: StoreState) => ({
   board: state.board,
 })
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  select: (idx: number) => dispatch(selectChar(idx)),
-  deselect: (idx: number) => dispatch(deselectChar(idx)),
-  submit: () => dispatch(submitWord()),
+
 });
 
 export const Board = connect(

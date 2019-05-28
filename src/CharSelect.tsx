@@ -30,7 +30,13 @@ export class DisconnectedCharSelect extends React.Component<Props, State> {
   }
   mouseUp = () => {
     this.setState({ isMouseDown: false, })
-    this.props.submit();
+    this.props.submit(
+      this.props.letters
+        .filter(c => c.isSelected)
+        .sort((a, b) => a.order - b.order)
+        .map(c => c.char)
+        .join('')
+    );
   }
   // lets us change the char only if the mouse is down already
   toggleChar = (char: CharInfo, idx: number) => {
@@ -84,7 +90,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   load: (letters: Array<string>, words: Array<Word>) => dispatch(loadLevel(letters, words)),
   select: (idx: number) => dispatch(selectChar(idx)),
   deselect: (idx: number) => dispatch(deselectChar(idx)),
-  submit: () => dispatch(submitWord()),
+  submit: (w: string) => dispatch(submitWord(w)),
 });
 
 export const CharSelect = connect(

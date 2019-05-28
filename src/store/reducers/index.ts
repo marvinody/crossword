@@ -141,6 +141,24 @@ function board(state = initialState.board, action: Action): State['board'] {
           words: action.words,
         }
       }
+    case ActionType.SUBMIT_WORD:
+      return {
+        ...state,
+        words: state.words.map((w): Word => {
+          if (w.completed || w.full !== action.word) {
+            return w;
+          }
+          // so we know w is NOT completed AND the word matches
+          return {
+            completed: true,
+            full: w.full,
+            split: w.split.map((c): WordChar => ({
+              ...c,
+              state: WordCharState.VISIBLE
+            }))
+          }
+        })
+      }
     default:
       return state;
   }

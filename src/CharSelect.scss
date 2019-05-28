@@ -10,9 +10,9 @@ $char-text-color: rgb(39, 0, 148);
 }
 
 .char.container {
-  position:absolute;
-  font-size:3em;
-  border:1px solid $char-border-color;
+  position: absolute;
+  font-size: 2.5em;
+  border: 1px solid $char-border-color;
   color: $char-text-color;
   transition:
     background-color ease-in-out 0.5s,
@@ -24,17 +24,30 @@ $char-text-color: rgb(39, 0, 148);
   cursor: pointer;
   font-family: monospace;
   user-select: none;
+  text-transform: capitalize;
+
+  &,
+  & .single.char {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  & .single.char {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   &.selected {
-    background-color:blue;
+    background-color: blue;
   }
 }
+
 .char.connections {
-  background-color:chartreuse;
+  background-color: chartreuse;
   position: absolute;
-  bottom:10px;
-  left:50.75%;
+  bottom: 10px;
+  left: 50.75%;
   transform: translateX(-50%)
 }
-
-

@@ -20,6 +20,7 @@ export type Action = {
   letters: Array<string>
 } | {
   type: ActionType.SUBMIT_WORD,
+  word: string,
 }
 
 export const loadLevel = (letters: Array<string>, words: Array<Word>): Action => ({
@@ -38,8 +39,9 @@ export const deselectChar = (idx: number): Action => ({
   idx,
 })
 
-export const submitWord = (): Action => ({
+export const submitWord = (word: string): Action => ({
   type: ActionType.SUBMIT_WORD,
+  word,
 })
 
 
