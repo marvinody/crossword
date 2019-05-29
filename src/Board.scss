@@ -15,9 +15,12 @@
   align-items: center;
 }
 
+$grid-bg: #ddd;
+$grid-correct-bg: #0f0;
+
 .hidden,
 .visible {
-  background-color: #ddd;
+  background-color: $grid-bg;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
 
@@ -26,16 +29,37 @@
   }
 }
 
-.visible>span {
-  animation: makeOpaque linear 0.75s;
+.visible {
+  animation: backgroundChange linear 1.5s;
+
+  &>span {
+    animation: makeOpaque linear 1s;
+  }
+}
+
+@keyframes backgroundChange {
+
+  0%,
+  40% {
+    background-color: $grid-correct-bg;
+  }
+
+  100% {
+    background-color: $grid-bg;
+  }
 }
 
 @keyframes makeOpaque {
-  from {
+  0% {
     opacity: 0;
   }
 
-  to {
+  30% {
+    opacity: 0.5;
+
+  }
+
+  100% {
     opacity: 1;
   }
 }
