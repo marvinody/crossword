@@ -38,7 +38,7 @@ const makeChars = (letters: Array<CharInfo>, toggleState: toggleCharFn, mouseDow
     const angle = getAngleFromIdx(idx, len);
     const coords = getCoordsFromAngle(angle, RADIUS_OF_TEXT_CENTERS);
     const className = 'char ' + (w.isSelected ? 'selected' : '');
-    return <g onMouseEnter={toggle} onMouseDown={down}>
+    return <g onMouseEnter={toggle} onMouseDown={down} className={className}>
       <circle cx={coords.x} cy={coords.y} r={RADIUS_OF_TEXT_CIRCLE}></circle>,
       <text
         x={coords.x} y={coords.y}

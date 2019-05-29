@@ -51,7 +51,6 @@ export class DisconnectedCharSelect extends React.Component<Props, State> {
 
 
   render() {
-    const max = this.props.letters.length;
     return (
       <div className='selector container' onMouseUp={this.mouseUp}>
         <CharConnector
@@ -59,18 +58,6 @@ export class DisconnectedCharSelect extends React.Component<Props, State> {
           mouseDown={this.mouseDown}
           letters={this.props.letters}
         ></CharConnector>
-        {/* <ul className='charSelect'>
-          {this.props.letters.map((char, idx) => {
-            return (<Char
-              key={idx}
-              idx={idx}
-              char={char}
-              max={max}
-              toggleState={this.toggleChar}
-              mouseDown={this.mouseDown}
-            ></Char>)
-          })}
-        </ul> */}
       </div>
     )
   }

@@ -45,6 +45,9 @@ $char-text-color: rgb(39, 0, 148);
 $text-wheel-circle-fill: black;
 $text-wheel-color: white;
 
+$selected-text-wheel-circle-fill: pink;
+$selected-text-wheel-color: poop;
+
 .char.connections {
 
   g {
@@ -61,6 +64,24 @@ $text-wheel-color: white;
       font-size: 2.5em;
       font-family: monospace;
       user-select: none;
+
     }
+
+
+
+    &.selected {
+      circle {
+        fill: $selected-text-wheel-circle-fill;
+      }
+
+      text {
+        stroke: $selected-text-wheel-color;
+        fill: $selected-text-wheel-color;
+      }
+    }
+  }
+
+  line {
+    stroke: $selected-text-wheel-circle-fill;
   }
 }
