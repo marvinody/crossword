@@ -43,10 +43,10 @@ $char-text-color: rgb(39, 0, 148);
 }
 
 $text-wheel-circle-fill: black;
-$text-wheel-color: white;
+$text-wheel-color: invert($text-wheel-circle-fill);
 
 $selected-text-wheel-circle-fill: pink;
-$selected-text-wheel-color: teal;
+$selected-text-wheel-color: invert($selected-text-wheel-circle-fill);
 
 .char.connections {
 

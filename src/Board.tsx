@@ -34,7 +34,11 @@ export class DisconnectedBoard extends React.Component<Props, State> {
         if (grid[col][row].props.className.includes('visible')) {
           return;
         }
-        grid[col][row] = <div className={className}>{isHidden ? ' ' : c.char}</div>
+        grid[col][row] = <div className={className}>
+          <span>
+            {isHidden ? ' ' : c.char}
+          </span>
+        </div>
       })
     })
     return (

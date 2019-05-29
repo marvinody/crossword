@@ -26,6 +26,21 @@
   }
 }
 
+.visible>span {
+  animation: makeOpaque linear 0.75s;
+}
+
+@keyframes makeOpaque {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
 .empty+.hidden,
 .empty+.visible {
   border-left: 1px solid black;
