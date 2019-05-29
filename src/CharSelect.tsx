@@ -16,6 +16,8 @@ type State = {
   isMouseDown: boolean,
 }
 
+
+
 export class DisconnectedCharSelect extends React.Component<Props, State> {
   readonly state: State = {
     isMouseDown: false,
@@ -52,7 +54,11 @@ export class DisconnectedCharSelect extends React.Component<Props, State> {
     const max = this.props.letters.length;
     return (
       <div className='selector container' onMouseUp={this.mouseUp}>
-        <CharConnector letters={this.props.letters}></CharConnector>
+        <CharConnector
+          toggleState={this.toggleChar}
+          mouseDown={this.mouseDown}
+          letters={this.props.letters}
+        ></CharConnector>
         {/* <ul className='charSelect'>
           {this.props.letters.map((char, idx) => {
             return (<Char
