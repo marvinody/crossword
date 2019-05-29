@@ -46,7 +46,7 @@ $text-wheel-circle-fill: black;
 $text-wheel-color: white;
 
 $selected-text-wheel-circle-fill: pink;
-$selected-text-wheel-color: poop;
+$selected-text-wheel-color: teal;
 
 .char.connections {
 
@@ -61,6 +61,7 @@ $selected-text-wheel-color: poop;
       stroke: $text-wheel-color;
       fill: $text-wheel-color;
       text-transform: capitalize;
+      // if fontsize changes, change radius of text circle in svg
       font-size: 2.5em;
       font-family: monospace;
       user-select: none;

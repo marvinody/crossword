@@ -10,7 +10,7 @@ type Props = {
 }
 const SIZE = 250; // length and width
 const MARGIN = 10; // on all sides
-const RADIUS_OF_TEXT_CIRCLE = 25;
+const RADIUS_OF_TEXT_CIRCLE = 25; // if this changes, change font-size for text
 const RADIUS = (SIZE - 2 * MARGIN) / 2;
 const CENTER = { x: RADIUS + MARGIN, y: RADIUS + MARGIN }
 // we want the RADIUS to be the absolute end of stuff

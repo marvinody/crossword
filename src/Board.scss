@@ -34,7 +34,7 @@
 .row:first-child {
 
   & .hidden,
-  &.visible {
+  & .visible {
     border-top: 1px solid black;
   }
 }
