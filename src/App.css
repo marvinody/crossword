@@ -1,13 +1,11 @@
+body,
+#root,
 .App {
-  text-align: center;
-}
-
-body, #root, .App {
   height: 100vh;
-  width:100vw;
-  display:flex;
+  width: 100vw;
+  display: flex;
   justify-content: center;
-  overflow:hidden;
+  overflow: hidden;
 }
 
 .App-logo {
@@ -27,6 +25,12 @@ body, #root, .App {
   color: white;
 }
 
+.App {
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -35,6 +39,7 @@ body, #root, .App {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

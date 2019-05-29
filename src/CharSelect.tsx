@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { Char } from './Char';
 import { CharConnector } from './CharConnector';
 import './CharSelect.scss';
 import { deselectChar, loadLevel, selectChar, submitWord } from './store/actions';
@@ -54,7 +53,7 @@ export class DisconnectedCharSelect extends React.Component<Props, State> {
     return (
       <div className='selector container' onMouseUp={this.mouseUp}>
         <CharConnector letters={this.props.letters}></CharConnector>
-        <ul className='charSelect'>
+        {/* <ul className='charSelect'>
           {this.props.letters.map((char, idx) => {
             return (<Char
               key={idx}
@@ -65,7 +64,7 @@ export class DisconnectedCharSelect extends React.Component<Props, State> {
               mouseDown={this.mouseDown}
             ></Char>)
           })}
-        </ul>
+        </ul> */}
       </div>
     )
   }

@@ -4,30 +4,52 @@ import { CharInfo, Coord } from './store/reducers';
 type Props = {
   letters: Array<CharInfo>
 }
-const DIAMETER = 225;
-const RADIUS = DIAMETER / 2;
-const CENTER = { x: RADIUS, y: RADIUS }
-const ADJUSTED_RADIUS = RADIUS - 23;
-export const CharConnector: React.FC<Props> = props => {
+const SIZE = 250; // length and width
+const MARGIN = 10; // on all sides
+const RADIUS_OF_TEXT_CIRCLE = 25;
+const RADIUS = (SIZE - 2 * MARGIN) / 2;
+const CENTER = { x: RADIUS + MARGIN, y: RADIUS + MARGIN }
+// we want the RADIUS to be the absolute end of stuff
+// so we'll sub one side to move our limited radius in a bit
+const RADIUS_OF_TEXT_CENTERS = RADIUS - RADIUS_OF_TEXT_CIRCLE;
 
+export const CharConnector: React.FC<Props> = props => {
   return (
-    <svg width={DIAMETER} height={DIAMETER} className='char connections'>
+    <svg width={SIZE} height={SIZE} className='char connections'>
+      {makeChars(props.letters)}
       {makeLines(props.letters)}
     </svg>
   )
 }
 
 
+const makeChars = (letters: Array<CharInfo>) => {
+  const len = letters.length;
+  return letters.flatMap((w, idx) => {
+    const angle = getAngleFromIdx(idx, len);
+    const coords = getCoordsFromAngle(angle);
+    return [
+      <circle cx={coords.x} cy={coords.y} r={RADIUS_OF_TEXT_CIRCLE}></circle>,
+      <text
+        x={coords.x} y={coords.y}
+        text-anchor='middle' dominant-baseline='central'
+      >
+        {w.char}
+      </text>,
+    ]
+  })
+}
+
 
 const getAngleFromIdx = (idx: number, len: number): number => ((360 / len) | 0) * idx
+
 const getCoordsFromAngle = (angle: number): Coord => {
-  const xInc = ADJUSTED_RADIUS * Math.cos(angle * Math.PI / 180),
-    yInc = ADJUSTED_RADIUS * Math.sin(angle * Math.PI / 180);
+  const xInc = RADIUS_OF_TEXT_CENTERS * Math.cos(angle * Math.PI / 180),
+    yInc = RADIUS_OF_TEXT_CENTERS * Math.sin(angle * Math.PI / 180);
   return { x: CENTER.x + xInc, y: CENTER.y + yInc };
 }
 
 const makeLines = (letters: Array<CharInfo>) => {
-  debugger;
   const paired = letters
     .map((c, idx) => ({ ...c, idx })) // save the idx of each one
     .filter(c => c.isSelected) // only care about selecteds

@@ -1,9 +1,7 @@
 $char-border-color: rgb(236, 32, 255);
 $char-text-color: rgb(39, 0, 148);
 
-.selector.container {
-  width: 0px; // this is needed to allow board to align itself horizontally nicely
-}
+.selector.container {}
 
 .charSelect {
   list-style-type: none;
@@ -44,10 +42,22 @@ $char-text-color: rgb(39, 0, 148);
   }
 }
 
+$text-wheel-circle-fill: black;
+$text-wheel-color: white;
+
 .char.connections {
-  background-color: chartreuse;
-  position: absolute;
-  bottom: 10px;
-  left: 50.75%;
-  transform: translateX(-50%)
+
+  circle {
+    fill: $text-wheel-circle-fill;
+    cursor: pointer;
+  }
+
+  text {
+    stroke: $text-wheel-color;
+    fill: $text-wheel-color;
+    text-transform: capitalize;
+    font-size: 2.5em;
+    font-family: monospace;
+    user-select: none;
+  }
 }
