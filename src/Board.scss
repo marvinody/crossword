@@ -8,11 +8,15 @@
 }
 
 .cell {
-  width: 32px;
-  height: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 16px;
+  min-width: 16px;
+  // max-width: 32px;// max-height: 32px;
+  width: 10vw;
+  height: 10vw;
+  font-size: 5vw;
 }
 
 $grid-bg: #ddd;
@@ -21,12 +25,7 @@ $grid-correct-bg: #0f0;
 .hidden,
 .visible {
   background-color: $grid-bg;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
 
-  &:first-child {
-    border-left: 1px solid black;
-  }
 }
 
 .visible {
@@ -61,27 +60,5 @@ $grid-correct-bg: #0f0;
 
   100% {
     opacity: 1;
-  }
-}
-
-
-.empty+.hidden,
-.empty+.visible {
-  border-left: 1px solid black;
-}
-
-.row:first-child {
-
-  & .hidden,
-  & .visible {
-    border-top: 1px solid black;
-  }
-}
-
-.row:last-child {
-
-  & .hidden,
-  & .visible {
-    border-bottom: 1px solid black;
   }
 }

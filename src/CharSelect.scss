@@ -62,7 +62,7 @@ $selected-text-wheel-color: invert($selected-text-wheel-circle-fill);
       fill: $text-wheel-color;
       text-transform: capitalize;
       // if fontsize changes, change radius of text circle in svg
-      font-size: 2.5em;
+      font-size: 1.5em;
       font-family: monospace;
       user-select: none;
 
