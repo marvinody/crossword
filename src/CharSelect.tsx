@@ -66,10 +66,15 @@ export class DisconnectedCharSelect extends React.Component<Props, State> {
     this.props.load(
       'walked'.split(''),
       [
-        newWord('walked', ZP, true),
-        newWord('wake', ZP, false),
-        newWord('lake', { x: 2, y: 0 }, false),
-        newWord('elk', { x: 2, y: 3 }, true),
+        newWord('walked', ZP, false),
+        newWord('wake', ZP, true),
+        newWord('kale', { x: -3, y: 4 }, true),
+        newWord('deal', { x: 0, y: 5 }, true),
+        newWord('lake', { x: 0, y: 2 }, true),
+        newWord('elk', { x: -3, y: 2 }, false),
+        newWord('led', { x: -4, y: 2 }, true),
+        newWord('law', { x: 3, y: 5 }, false),
+        newWord('wed', { x: 3, y: 7 }, true)
       ],
     );
   }
