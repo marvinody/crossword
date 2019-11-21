@@ -13,6 +13,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.0.1",
     "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
     "typesafe-actions": "^4.4.0",
     "typescript": "3.4.5"
   },
@@ -40,7 +41,6 @@
   "devDependencies": {
     "@types/react": "^16.8.18",
     "@types/react-dom": "^16.8.4",
-    "@types/react-redux": "^7.0.9",
-    "redux-devtools-extension": "^2.13.8"
+    "@types/react-redux": "^7.0.9"
   }
 }
