@@ -1,13 +1,11 @@
 import React from 'react';
 import './App.css';
-import { Board } from './Board';
-import { CharSelect } from './CharSelect';
+import Game from './Game';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Board></Board>
-      <CharSelect></CharSelect>
+      <Game></Game>
     </div>
   );
 }
